@@ -1,0 +1,235 @@
+/* Contenedor principal dejando espacio para header y sidebar */
+.main-content {
+  margin-left: 280px; /* ancho sidebar */
+  margin-top: 100px;  /* alto header */
+  padding: 20px 40px;
+  min-height: calc(100vh - 100px); /* footer no se superpone */
+  background-color: #E7E5E5;
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+}
+
+/* Título principal */
+.config-taller-title {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 60px;
+}
+
+/* Pestañas */
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tabs button {
+  background: #f0f0f0;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.tabs button:hover {
+  background: #e2e2e2;
+}
+
+.tabs button.active {
+  background: #3a5774;
+  color: white;
+  font-weight: 600;
+}
+
+.tabs-separator {
+  margin: 15px 0;
+  border: 0.5px solid #ccc;
+}
+
+/* Contenido de cada pestaña */
+.tab-content {
+  margin-top: 15px;
+}
+
+/* Footer */
+.main-content footer {
+  margin-top: 30px;
+}
+
+.config-section {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+.nuevo-servicio-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.nuevo-servicio-form input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  flex: 1;
+}
+
+.btn-agregar,
+.btn-guardar {
+  background-color: #3a5774;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-agregar:hover,
+.btn-guardar:hover {
+  background-color: #1e4fcf;
+}
+
+.tabla-servicios {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla-servicios th,
+.tabla-servicios td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.tabla-servicios th {
+  background-color: #3a5774;
+  color: white;
+  text-align: left;
+}
+
+.btn-editar {
+  background-color: #38b74d;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.btn-editar:hover {
+  background-color: #2e9c3c;
+}
+
+.btn-eliminar {
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-eliminar:hover {
+  background-color: #b52a2a;
+}
+
+/* Contenedor del listado con scroll */
+.tabla-servicios-container {
+  max-height: 300px; /* o la altura que quieras */
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+/* Encabezado fijo */
+.tabla-servicios thead th {
+  position: sticky;
+  top: 0;
+  background-color: #3a5774; /* mismo que antes */
+  color: white;
+  z-index: 1;
+  text-align: left;
+  padding: 10px;
+}
+
+/* Toast flotante */
+.toast-mensaje {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #4caf50;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: bold;
+  z-index: 9999;
+  opacity: 0.95;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  animation: fadeInOut 2.5s ease forwards;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translate(-50%, -10px); }
+  10% { opacity: 0.95; transform: translate(-50%, 0); }
+  90% { opacity: 0.95; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, -10px); }
+}
+
+/* Modal confirmación eliminar */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-servicio {
+  background: white;
+  padding: 25px;
+  width: 400px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.btn-cancelar {
+  background: #aaa;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-cancelar:hover {
+  background: #888;
+}
+
+.tabla-servicios-container {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
