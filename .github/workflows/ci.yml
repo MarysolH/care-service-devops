@@ -1,0 +1,45 @@
+name: CI Care Service
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Obtener repositorio
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      # Configurar Node para frontend y backend
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      # Instalar dependencias del backend
+      - name: Install backend deps
+        run: |
+          cd backend
+          npm install
+
+      # Ejecutar tests del backend
+      - name: Run backend tests
+        run: |
+          cd backend
+          npm test
+
+      # Instalar dependencias del frontend
+      - name: Install frontend deps
+        run: |
+          cd frontend
+          npm install
+
+      # Build Docker Compose
+      - name: Build Docker images
+        run: |
+          docker-compose build
