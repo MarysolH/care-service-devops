@@ -11,42 +11,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Obtener repositorio
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      # Configurar Node para frontend y backend
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: "18"
 
-      # Mostrar qué package.json está usando GitHub
-      - name: Show backend package.json
-        run: |
-          cd backend
-          ls -la
-          cat package.json
-
-      # Instalar dependencias del backend
       - name: Install backend deps
         run: |
           cd backend
           npm install
 
-      # Ejecutar tests del backend
       - name: Run backend tests
         run: |
           cd backend
           npm test
 
-      # Instalar dependencias del frontend
       - name: Install frontend deps
         run: |
           cd frontend
           npm install
-
-      # Build Docker Compose
-      - name: Build Docker images
-        run: |
-          docker-compose build
