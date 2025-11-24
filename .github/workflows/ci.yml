@@ -44,7 +44,7 @@ jobs:
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
-          username: ${{ github.actor }}
+          username: marysolh
           password: ${{ secrets.GHCR_TOKEN }}
 
       # 7️ Build y push backend Docker image
@@ -54,8 +54,8 @@ jobs:
           context: ./backend
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/care-backend:latest
-            ghcr.io/${{ github.repository_owner }}/care-backend:${{ github.sha }}
+            ghcr.io/marysolh/care-backend:latest
+            ghcr.io/marysolh/care-backend:${{ github.sha }}
 
       # 8️ Build y push frontend Docker image
       - name: Build and Push frontend Docker image
@@ -64,5 +64,5 @@ jobs:
           context: ./frontend
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/care-frontend:latest
-            ghcr.io/${{ github.repository_owner }}/care-frontend:${{ github.sha }}
+            ghcr.io/marysolh/care-frontend:latest
+            ghcr.io/marysolh/care-frontend:${{ github.sha }}
