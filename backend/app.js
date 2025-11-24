@@ -27,5 +27,23 @@ app.get("/", (req, res) => {
   res.json({ message: "API funcionando correctamente" });
 });
 
+const client = require("prom-client");
+
+// Crear un registry para métricas
+const register = new client.Registry();
+
+// Métricas por defecto (CPU, memoria, Node.js)
+client.collectDefaultMetrics({ register });
+
+// Endpoint para Prometheus
+app.get("/metrics", async (req, res) => {
+  try {
+    res.set("Content-Type", register.contentType);
+    res.end(await register.metrics());
+  } catch (err) {
+    res.status(500).end(err);
+  }
+});
+
 module.exports = app;
 
