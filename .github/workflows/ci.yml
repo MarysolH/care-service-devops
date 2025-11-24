@@ -21,6 +21,13 @@ jobs:
         with:
           node-version: "18"
 
+      # Mostrar qué package.json está usando GitHub
+      - name: Show backend package.json
+        run: |
+          cd backend
+          ls -la
+          cat package.json
+
       # Instalar dependencias del backend
       - name: Install backend deps
         run: |
