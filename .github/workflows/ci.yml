@@ -11,25 +11,58 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1️ Checkout del repositorio
       - name: Checkout repo
         uses: actions/checkout@v3
 
+      # 2️ Configurar Node
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: "18"
 
+      # 3️ Instalar dependencias backend
       - name: Install backend deps
         run: |
           cd backend
           npm install
 
+      # 4️ Ejecutar tests backend
       - name: Run backend tests
         run: |
           cd backend
           npm test
 
+      # 5️ Instalar dependencias frontend
       - name: Install frontend deps
         run: |
           cd frontend
           npm install
+
+      # 6️ Login en GitHub Container Registry (GHCR)
+      - name: Log in to GHCR
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GHCR_TOKEN }}
+
+      # 7️ Build y push backend Docker image
+      - name: Build and Push backend Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: ./backend
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/care-backend:latest
+            ghcr.io/${{ github.repository_owner }}/care-backend:${{ github.sha }}
+
+      # 8️ Build y push frontend Docker image
+      - name: Build and Push frontend Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: ./frontend
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/care-frontend:latest
+            ghcr.io/${{ github.repository_owner }}/care-frontend:${{ github.sha }}
