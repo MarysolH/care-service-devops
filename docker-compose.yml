@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  backend:
+    build: ./backend
+    container_name: care-backend
+    environment:
+      - MONGO_URI=${MONGO_URI}
+    ports:
+      - "3000:3000"
+    
+
+  frontend:
+    build: ./frontend
+    container_name: care-frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend

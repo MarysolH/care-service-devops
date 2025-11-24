@@ -1,7 +1,10 @@
-const app = require('./app');
+const app = require("./app");
+const conectarDB = require("./config/db");
 
 const PORT = 3000;
 
-app.listen(PORT, () => {
-  console.log('Servidor escuchando en puerto', PORT);
+conectarDB().then(() => {
+  app.listen(PORT, () => {
+    console.log("Servidor escuchando en puerto", PORT);
+  });
 });
