@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3000/api";
+const API_URL = "https://care-service-devops.onrender.com/api";
 
 export const getTurnos = async () => {
   const res = await fetch(`${API_URL}/turnos`);
